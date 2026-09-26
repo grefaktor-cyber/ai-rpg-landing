@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI-Приключение — текстовая RPG с нейросетью в Telegram</title>
+    <meta name="description" content="Текстовая RPG в Telegram с ИИ-мастером. Живой мир фэнтези: бои, боссы, гильдии, захват локаций, подземелья. Каждое прохождение уникально. Бесплатно 10 действий в день. 18+.">
+    <meta name="keywords" content="RPG с нейросетью, AI игра, текстовая RPG, игра в телеграмме, фэнтези игра бот, нейросеть игра, MMO в Telegram, AI dungeon на русском">
+    <meta name="author" content="AI-Приключение">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph — превью в Telegram, VK, WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AI-Приключение — RPG с нейросетью в Telegram">
+    <meta property="og:description" content="ИИ ведёт сюжет и помнит каждое твоё решение. Живой мир фэнтези, бои, гильдии, подземелья. Попробуй бесплатно.">
+    <meta property="og:url" content="https://ai-rpg-bot.onrender.com/">
+    <meta property="og:image" content="https://ai-rpg-bot.onrender.com/preview.jpg">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI-Приключение — RPG с нейросетью">
+    <meta name="twitter:description" content="ИИ ведёт сюжет. Живой мир фэнтези в Telegram. Бесплатно.">
+
+    <!-- Favicon (если будет свой файл — замени путь) -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0a0416;
+            color: #e8e3f5;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Фон с градиентом и мягким свечением */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(139, 92, 246, 0.18), transparent 50%),
+                radial-gradient(circle at 80% 90%, rgba(6, 182, 212, 0.12), transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.04), transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e8e3f5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-emoji { font-size: 24px; }
+        .logo span:last-child { color: #8b5cf6; }
+
+        .header-cta {
+            padding: 8px 16px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            border-radius: 8px;
+            color: #e8e3f5;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .header-cta:hover {
+            background: rgba(139, 92, 246, 0.3);
+            border-color: #8b5cf6;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 100px;
+            font-size: 13px;
+            color: #b9a3f5;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+
+        h1 {
+            font-size: clamp(32px, 5.5vw, 56px);
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        h1 .accent {
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 2.2vw, 20px);
+            color: #a89bc5;
+            max-width: 680px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.2s;
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(124, 58, 237, 0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e8e3f5;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-note {
+            font-size: 13px;
+            color: #7a6e99;
+        }
+
+        /* ===== PREVIEW / СКРИНШОТЫ ===== */
+        .preview {
+            padding: 40px 0 80px;
+            text-align: center;
+        }
+        .preview-frame {
+            max-width: 420px;
+            margin: 0 auto;
+            border-radius: 24px;
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(6, 182, 212, 0.15));
+            box-shadow: 0 30px 80px rgba(124, 58, 237, 0.3);
+        }
+        .preview-inner {
+            background: #0a0416;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #c9bfe0;
+        }
+        .preview-inner .label {
+            color: #7c3aed;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        .preview-inner .msg {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: rgba(139, 92, 246, 0.08);
+            border-left: 3px solid #7c3aed;
+            border-radius: 6px;
+        }
+        .preview-inner .msg.user {
+            background: rgba(6, 182, 212, 0.06);
+            border-left-color: #06b6d4;
+        }
+        .preview-inner .bot-marker {
+            font-size: 11px;
+            color: #7a6e99;
+            display: block;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        /* ===== FEATURES ===== */
+        .features {
+            padding: 60px 0;
+        }
+        .section-title {
+            font-size: clamp(24px, 3.5vw, 36px);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+        .section-sub {
+            text-align: center;
+            color: #a89bc5;
+            margin-bottom: 48px;
+            font-size: 16px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .feature {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            transition: all 0.25s;
+        }
+        .feature:hover {
+            background: rgba(139, 92, 246, 0.06);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
+        }
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 14px;
+        }
+        .feature h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #e8e3f5;
+        }
+        .feature p {
+            font-size: 14px;
+            color: #a89bc5;
+            line-height: 1.55;
+        }
+
+        /* ===== HOW TO PLAY ===== */
+        .steps {
+            padding: 60px 0;
+        }
+        .step-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            counter-reset: step;
+        }
+        .step {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            position: relative;
+        }
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            display: block;
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: #fff;
+            font-weight: 800;
+            border-radius: 50%;
+            margin-bottom: 14px;
+            font-size: 16px;
+        }
+        .step h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .step p {
+            font-size: 14px;
+            color: #a89bc5;
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+            padding: 60px 0;
+        }
+        .faq-item {
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        .faq-item h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #e8e3f5;
+        }
+        .faq-item p {
+            font-size: 14px;
+            color: #a89bc5;
+        }
+
+        /* ===== CTA BOTTOM ===== */
+        .cta-bottom {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .cta-bottom h2 {
+            font-size: clamp(24px, 4vw, 40px);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+        .cta-bottom p {
+            color: #a89bc5;
+            margin-bottom: 32px;
+            font-size: 16px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            font-size: 13px;
+            color: #7a6e99;
+        }
+        footer a {
+            color: #8b5cf6;
+            text-decoration: none;
+        }
+        footer a:hover { text-decoration: underline; }
+        .footer-links {
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            margin: 0 10px;
+        }
+
+        /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+        @media (max-width: 640px) {
+            .hero { padding: 50px 0 40px; }
+            .cta-group { flex-direction: column; align-items: center; }
+            .btn-primary, .btn-secondary { width: 100%; max-width: 340px; justify-content: center; }
+            header { padding: 16px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="logo">
+            <span class="logo-emoji">⚔️</span>
+            <span>AI-<span>Приключение</span></span>
+        </div>
+        <a href="https://t.me/ai_admrpg_bot" class="header-cta">Играть →</a>
+    </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-tag">🎮 Текстовая RPG с нейросетью</div>
+        <h1>
+            Пиши свою историю.<br>
+            <span class="accent">ИИ ведёт сюжет.</span>
+        </h1>
+        <p class="hero-sub">
+            Тёмное фэнтези в Telegram. Исследуй мир из 12 локаций, сражайся с боссами,
+            вступай в гильдии и захватывай земли. Нейросеть помнит каждое твоё решение —
+            второго такого прохождения не будет.
+        </p>
+        <div class="cta-group">
+            <a href="https://t.me/ai_admrpg_bot" class="btn-primary">
+                ⚔️ Начать приключение
+            </a>
+            <a href="#features" class="btn-secondary">
+                Что внутри ↓
+            </a>
+        </div>
+        <p class="hero-note">Бесплатно · 10 действий в день · 18+</p>
+    </div>
+</section>
+
+<!-- ================= PREVIEW ================= -->
+<section class="preview">
+    <div class="container">
+        <div class="preview-frame">
+            <div class="preview-inner">
+                <div class="msg user">
+                    <span class="label">Ты:</span>
+                    Иду в тёмный лес
+                </div>
+                <div class="msg">
+                    <span class="label">Мастер:</span>
+                    Ты выходишь за околицу деревни и углубляешься под сень древних деревьев.
+                    В воздухе пахнет хвоей и влажной землёй. Где-то вдалеке ухает сова,
+                    а между стволов мелькает тень.
+                    <span class="bot-marker">🤖 Сгенерировано ИИ · Локация: Тёмный лес</span>
+                </div>
+                <div class="msg user">
+                    <span class="label">Ты:</span>
+                    Осматриваюсь внимательно
+                </div>
+                <div class="msg">
+                    <span class="label">Мастер:</span>
+                    Под корнями старого дуба ты замечаешь сундук. Он покрыт мхом, но замок
+                    блестит — кто-то оставил его недавно. Что будешь делать?
+                    <span class="bot-marker">🤖 Сгенерировано ИИ · +5 XP</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section class="features" id="features">
+    <div class="container">
+        <h2 class="section-title">Что тебя ждёт</h2>
+        <p class="section-sub">Каждое действие влияет на мир</p>
+
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🧠</div>
+                <h3>Живой сюжет от ИИ</h3>
+                <p>Нейросеть ведёт игру. Никаких заготовленных диалогов — только твоя история.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🗺️</div>
+                <h3>12 локаций фэнтези</h3>
+                <p>Деревня, тёмный лес, гиблое болото, ледяные горы, пещера дракона и остров духов.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚔️</div>
+                <h3>Бои и боссы</h3>
+                <p>Атака, защита, зелья, криты. Боссы живут в своих локациях и ждут героев.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🏛️</div>
+                <h3>Гильдии и захваты</h3>
+                <p>Создавай гильдию, захватывай локации, получай бонусы к золоту и опыту.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📜</div>
+                <h3>NPC с квестами</h3>
+                <p>Кузнец, старейшина, лесник и капитан — у каждого свои задания и награды.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🐾</div>
+                <h3>Питомцы и крафт</h3>
+                <p>Волк, сова, дракончик, феникс. Кузница для крафта и улучшения предметов.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <h3>Динамические события</h3>
+                <p>Нашествия, клады, мор, благословение — мир меняется каждый час.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🗡️</div>
+                <h3>PvP-дуэли</h3>
+                <p>Вызывай других игроков на дуэль, ставь золото и становись легендой арены.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎁</div>
+                <h3>Квесты и достижения</h3>
+                <p>3 ежедневных задания, 30+ достижений, рейтинги игроков и гильдий.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= HOW TO PLAY ================= -->
+<section class="steps">
+    <div class="container">
+        <h2 class="section-title">Как начать играть</h2>
+        <p class="section-sub">Три шага до первого подвига</p>
+
+        <div class="step-list">
+            <div class="step">
+                <h3>Открой бота</h3>
+                <p>Нажми «Начать приключение» — откроется Telegram-бот.</p>
+            </div>
+            <div class="step">
+                <h3>Создай героя</h3>
+                <p>Выбери расу, класс и фракцию. Орк-воин, эльф-маг или гном-жрец.</p>
+            </div>
+            <div class="step">
+                <h3>Пиши действия</h3>
+                <p>«Иду в лес», «атакую гоблина», «говорю с кузнецом». ИИ отвечает.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq">
+    <div class="container" style="max-width:760px;">
+        <h2 class="section-title" style="margin-bottom:40px;">Частые вопросы</h2>
+
+        <div class="faq-item">
+            <h3>Это бесплатно?</h3>
+            <p>Да. 10 действий в день бесплатно. Премиум за Telegram Stars — безлимит и приоритет.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Как играть?</h3>
+            <p>Просто пиши боту, что делает твой герой. ИИ создаёт сюжет на ходу и помнит все твои поступки.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Игра похожа на какую-то известную RPG?</h3>
+            <p>Вдохновлялись Lineage 2: расы, классы, гильдии, захват локаций, боссы, питомцы.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Нужно что-то скачивать?</h3>
+            <p>Нет. Только Telegram. Игра работает прямо в чате с ботом.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Мои данные в безопасности?</h3>
+            <p>Данные хранятся на серверах в РФ. Ты можешь отозвать согласие командой /revoke в любой момент.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CTA BOTTOM ================= -->
+<section class="cta-bottom">
+    <div class="container">
+        <h2>Готов начать приключение?</h2>
+        <p>Первое действие займёт 10 секунд. Дальше — решать тебе.</p>
+        <a href="https://t.me/ai_admrpg_bot" class="btn-primary" style="font-size:18px; padding:20px 40px;">
+            ⚔️ Открыть в Telegram
+        </a>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="https://t.me/ai_admrpg_bot">Бот</a>
+            <a href="#features">Возможности</a>
+            <a href="#features">FAQ</a>
+        </div>
+        <p>© 2026 AI-Приключение. 18+. Контент сгенерирован ИИ.</p>
+        <p style="margin-top:8px; font-size:12px;">Данные хранятся в РФ. Согласие можно отозвать командой /revoke.</p>
+    </div>
+</footer>
+
+</body>
+</html>
