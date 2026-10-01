@@ -112,4 +112,212 @@
         body::before {
             content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
             background: radial-gradient(circle at 20% 10%, rgba(139,92,246,0.15), transparent 50%),
-                        radial-gradient(circle at 80% 90%, rgba(6,
+                        radial-gradient(circle at 80% 90%, rgba(6,182,212,0.10), transparent 50%);
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 20px 0; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-size: 18px; font-weight: 700; color: #e8e3f5;
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+        }
+        .logo span:last-child { color: #8b5cf6; }
+        .header-cta {
+            padding: 8px 16px; background: rgba(139,92,246,0.15);
+            border: 1px solid rgba(139,92,246,0.4); border-radius: 8px;
+            color: #e8e3f5; text-decoration: none; font-size: 14px; font-weight: 600;
+            transition: all 0.2s;
+        }
+        .header-cta:hover { background: rgba(139,92,246,0.3); }
+
+        .breadcrumbs { padding: 12px 0; font-size: 13px; color: #7a6e99; }
+        .breadcrumbs a { color: #8b5cf6; text-decoration: none; }
+
+        .page-header { padding: 40px 0 20px; text-align: center; }
+        h1 {
+            font-size: clamp(28px, 5vw, 44px); font-weight: 800;
+            margin-bottom: 16px; letter-spacing: -0.02em;
+        }
+        h1 .accent {
+            background: linear-gradient(135deg, #a78bfa, #7c3aed, #06b6d4);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .page-sub { color: #a89bc5; font-size: 17px; }
+
+        .faq { padding: 40px 0; }
+        .faq-item {
+            padding: 20px 24px; background: rgba(255,255,255,0.03);
+            border-radius: 12px; margin-bottom: 12px;
+            border-left: 3px solid #7c3aed;
+        }
+        .faq-item h3 { font-size: 17px; margin-bottom: 10px; color: #e8e3f5; }
+        .faq-item p { font-size: 15px; color: #a89bc5; }
+        .faq-item a { color: #8b5cf6; }
+
+        .cta-bottom { padding: 60px 0; text-align: center; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 32px; background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: #fff; text-decoration: none; border-radius: 12px;
+            font-weight: 700; font-size: 16px;
+            box-shadow: 0 8px 24px rgba(124,58,237,0.35);
+            transition: all 0.2s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+
+        footer {
+            padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center; font-size: 13px; color: #7a6e99;
+        }
+        footer a { color: #8b5cf6; text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="/" class="logo"><span>⚔️</span><span>AI-<span>Приключение</span></span></a>
+        <a href="https://t.me/ai_admrpg_bot?start=faq_header" class="header-cta" rel="noopener">Играть →</a>
+    </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+    <div class="container"><a href="/">Главная</a> · FAQ</div>
+</nav>
+
+<main>
+
+<section class="page-header">
+    <div class="container">
+        <h1>Частые <span class="accent">вопросы</span></h1>
+        <p class="page-sub">Всё что нужно знать перед началом игры</p>
+    </div>
+</section>
+
+<section class="faq">
+    <div class="container">
+
+        <article class="faq-item">
+            <h3>Что это за игра?</h3>
+            <p>AI-Приключение — текстовая RPG в Telegram с нейросетью в роли Мастера. Вы создаёте героя, исследуете мир из 12 локаций, сражаетесь с монстрами, выполняете квесты и общаетесь с другими игроками.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Как начать играть?</h3>
+            <p>Напишите боту <a href="https://t.me/ai_admrpg_bot?start=faq_start" rel="noopener">/start</a>. Выберите расу, класс, фракцию и имя героя. После короткого обучения окажетесь в Начальной деревне.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Как управлять героем?</h3>
+            <p>Пишите боту, что делает герой: «осматриваюсь», «атакую гоблина», «иду в лес». ИИ-Мастер опишет сцену и запустит бой или событие. Также используйте кнопки меню для быстрых действий.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Какие есть расы и классы?</h3>
+            <p>4 обычные расы (Человек, Эльф, Тёмный эльф, Орк) и 3 премиум (Демон, Ангел, Плут). 15 классов: Воин, Рыцарь, Маг, Лучник, Убийца, Некромант, Танцор, Разрушитель, Тиранин, Владыка, Жрец, Певчий, Страж, Охотник, Защитник. Плюс Хранитель — эксклюзив за Stars.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Как работают бои?</h3>
+            <p>Пошаговые. Собираете до 4 действий за ход (атака, защита, скиллы, зелья). Нажимаете «⚡ Выполнить» — все действия срабатывают, затем враг отвечает. Учитываются P.Def и M.Def.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Что такое энергия?</h3>
+            <p>Тратится на действия с ИИ. Восстанавливается +1 каждые 30 минут. Максимум растёт с уровнем и рефералами. Премиум снимает лимит.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Это бесплатно?</h3>
+            <p>Да. 10 действий в день бесплатно. Премиум за Telegram Stars даёт безлимит энергии и ускоренную регенерацию.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Как получить премиум?</h3>
+            <p>В команде <code>/premium</code> за Telegram Stars. Тарифы: дневной (15⭐), недельный (60⭐), месячный (150⭐), годовой (1200⭐), вечный (5000⭐).</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Премиум открывает расы?</h3>
+            <p><b>Нет.</b> Премиум даёт безлимит энергии и ×2 регенерацию. Премиум-расы (Демон, Ангел, Плут) и класс Хранитель покупаются <b>отдельно</b> за Stars в /premium.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Что такое крафт?</h3>
+            <p>В кузнице можно создавать предметы из рецептов и материалов. Рецепты падают с боссов. Шанс успеха: 100% (D-грейд), 75% (C), 60% (B).</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Как получить скрытые скиллы?</h3>
+            <p>Книги скиллов падают с боссов (3-5% шанс). Изучите в меню «✨ Скилы» → «📖 Изучить книгу».</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Что такое спойл?</h3>
+            <p>Классы Убийца, Плут, Охотник умеют «обчищать» мобов. В бою кнопка «🌿 Спойл» — при убийстве шанс получить редкий материал для крафта.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Как работают мировые боссы?</h3>
+            <p>Раз в 6 часов (14:00, 20:00, 02:00, 08:00 МСК) появляется босс. Все игроки в локации бьют его вместе. Награда зависит от вклада. Атака недоступна при HP &lt; 25%.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Что такое подземелья?</h3>
+            <p>Цепочка боёв (3-7 комнат) с боссом в конце. За вход платишь золото. Смерть = вся добыча потеряна. Прошёл — забираешь всё.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Что такое сезоны?</h3>
+            <p>Каждые 30 дней — новый сезон. Соревнование по сезонному XP (начисляется за победы в бою). Топ-10 получают золото, титулы и уникальные предметы. Команда <code>/season</code>.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Можно ли играть с друзьями?</h3>
+            <p>Да! Создавайте гильдии, общайтесь в чате (общий/гильдия/личка), обменивайтесь предметами через /trade, сражайтесь в дуэлях.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Игра похожа на какую-то известную RPG?</h3>
+            <p>Вдохновлялись Lineage 2: расы, классы, гильдии, захват локаций, боссы, питомцы, спойл.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Нужно что-то скачивать?</h3>
+            <p>Нет. Только Telegram. Игра работает прямо в чате с ботом.</p>
+        </article>
+
+        <article class="faq-item">
+            <h3>Мои данные в безопасности?</h3>
+            <p>Данные хранятся на серверах в РФ. Согласие можно отозвать командой /revoke.</p>
+        </article>
+
+    </div>
+</section>
+
+<section class="cta-bottom">
+    <div class="container">
+        <a href="https://t.me/ai_admrpg_bot?start=faq_bottom"
+           class="btn-primary" rel="noopener">
+            ⚔️ Открыть в Telegram
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <a href="/">Главная</a>
+        <a href="/features/">Возможности</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/premium/">Премиум</a>
+        <a href="/blog/">Блог</a>
+        <p style="margin-top:12px;">© 2026 AI-Приключение. 18+</p>
+    </div>
+</footer>
+
+</body>
+</html>
