@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Возможности AI-Приключение — 12 локаций, боссы, гильдии, сезоны</title>
+    <meta name="description" content="Все возможности AI-Приключения: 12 локаций фэнтези, подземелья, 72+ скиллов, гильдии, мировые боссы, сезоны, крафт, питомцы, PvP-дуэли. Полный обзор механик RPG с нейросетью в Telegram.">
+    <meta name="keywords" content="возможности RPG, механики RPG, RPG бот Telegram, RPG с нейросетью, локации фэнтези, гильдии Telegram, боссы RPG, сезоны RPG">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://ai-rpg-landing.onrender.com/features/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Возможности AI-Приключение — полный обзор">
+    <meta property="og:description" content="12 локаций, 72+ скиллов, гильдии, боссы, сезоны, крафт. Всё что есть в игре.">
+    <meta property="og:url" content="https://ai-rpg-landing.onrender.com/features/">
+    <meta property="og:image" content="https://ai-rpg-landing.onrender.com/preview.jpg">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#7c3aed">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://ai-rpg-landing.onrender.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Возможности", "item": "https://ai-rpg-landing.onrender.com/features/"}
+      ]
+    }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0a0416; color: #e8e3f5; line-height: 1.6;
+        }
+        body::before {
+            content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(139,92,246,0.15), transparent 50%),
+                radial-gradient(circle at 80% 90%, rgba(6,182,212,0.10), transparent 50%);
+        }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 20px 0; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-size: 18px; font-weight: 700; color: #e8e3f5;
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+        }
+        .logo span:last-child { color: #8b5cf6; }
+        .header-cta {
+            padding: 8px 16px; background: rgba(139,92,246,0.15);
+            border: 1px solid rgba(139,92,246,0.4); border-radius: 8px;
+            color: #e8e3f5; text-decoration: none; font-size: 14px; font-weight: 600;
+            transition: all 0.2s;
+        }
+        .header-cta:hover { background: rgba(139,92,246,0.3); }
+
+        .breadcrumbs { padding: 12px 0; font-size: 13px; color: #7a6e99; }
+        .breadcrumbs a { color: #8b5cf6; text-decoration: none; }
+        .breadcrumbs a:hover { text-decoration: underline; }
+
+        .page-header { padding: 40px 0 20px; text-align: center; }
+        h1 {
+            font-size: clamp(28px, 5vw, 48px); font-weight: 800;
+            margin-bottom: 16px; letter-spacing: -0.02em;
+        }
+        h1 .accent {
+            background: linear-gradient(135deg, #a78bfa, #7c3aed, #06b6d4);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .page-sub { color: #a89bc5; font-size: 17px; max-width: 700px; margin: 0 auto; }
+
+        section { padding: 40px 0; }
+        h2 {
+            font-size: clamp(22px, 3vw, 32px); font-weight: 800;
+            margin-bottom: 24px; letter-spacing: -0.01em;
+        }
+        h3 { font-size: 18px; margin-bottom: 10px; color: #e8e3f5; }
+
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            padding: 24px; background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06); border-radius: 16px;
+            transition: all 0.25s;
+        }
+        .card:hover {
+            background: rgba(139,92,246,0.06);
+            border-color: rgba(139,92,246,0.3);
+            transform: translateY(-2px);
+        }
+        .card-icon { font-size: 32px; margin-bottom: 14px; }
+        .card p { font-size: 14px; color: #a89bc5; line-height: 1.55; }
+        .card ul { margin-top: 10px; padding-left: 20px; }
+        .card li { font-size: 14px; color: #a89bc5; margin-bottom: 4px; }
+
+        .cta-bottom { padding: 60px 0; text-align: center; }
+        .cta-bottom h2 { margin-bottom: 20px; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 32px; background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: #fff; text-decoration: none; border-radius: 12px;
+            font-weight: 700; font-size: 16px;
+            transition: all 0.2s;
+            box-shadow: 0 8px 24px rgba(124,58,237,0.35);
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+
+        footer {
+            padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center; font-size: 13px; color: #7a6e99;
+        }
+        footer a { color: #8b5cf6; text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="/" class="logo">
+            <span>⚔️</span>
+            <span>AI-<span>Приключение</span></span>
+        </a>
+        <a href="https://t.me/ai_admrpg_bot?start=features_header" class="header-cta" rel="noopener">Играть →</a>
+    </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+    <div class="container">
+        <a href="/">Главная</a> · Возможности
+    </div>
+</nav>
+
+<main>
+
+<section class="page-header">
+    <div class="container">
+        <h1>Все возможности <span class="accent">AI-Приключения</span></h1>
+        <p class="page-sub">
+            Полный обзор механик: локации, бои, подземелья, гильдии, сезоны,
+            крафт, питомцы, PvP. Всё что ждёт тебя в RPG с нейросетью.
+        </p>
+    </div>
+</section>
+
+<!-- МИР -->
+<section>
+    <div class="container">
+        <h2>🗺️ Мир и локации</h2>
+        <div class="grid">
+            <article class="card">
+                <div class="card-icon">🗺️</div>
+                <h3>12 локаций фэнтези</h3>
+                <p>От мирной деревни до острова духов. Графическая карта с легендой и индикацией сложности.</p>
+                <ul>
+                    <li>Начальная деревня, Таверна, Тракт</li>
+                    <li>Тёмный лес, Руины, Ледяные горы</li>
+                    <li>Гиблое болото, Пещера дракона</li>
+                    <li>Морской порт, Остров духов</li>
+                </ul>
+            </article>
+            <article class="card">
+                <div class="card-icon">🌍</div>
+                <h3>Динамические события</h3>
+                <p>Мир меняется каждый час. Разные события дают разные бонусы.</p>
+                <ul>
+                    <li>🔴 Нашествие — +30% XP</li>
+                    <li>💰 Клад — +100% золота</li>
+                    <li>🕊 Затишье — меньше врагов</li>
+                    <li>✨ Благословение — +50% XP</li>
+                </ul>
+            </article>
+            <article class="card">
+                <div class="card-icon">🏴</div>
+                <h3>Захват локаций</h3>
+                <p>Гильдии могут захватывать локации. Члены получают +15% золота и +10% XP.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- БОЙ -->
+<section>
+    <div class="container">
+        <h2>⚔️ Боевая система 3.0</h2>
+        <div class="grid">
+            <article class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Очередь из 4 действий</h3>
+                <p>Собери до 4 действий за ход — атака, защита, скиллы, зелья. Потом нажми «Выполнить» и враг ответит.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🛡</div>
+                <h3>P.Def и M.Def</h3>
+                <p>Физический и магический урон режется соответствующей защитой. Каждый класс имеет свой тип урона.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">💥</div>
+                <h3>Криты и блоки</h3>
+                <p>Шанс крита зависит от DEX + расовых бонусов + сетовых бонусов. Блок — от экипировки.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🐉</div>
+                <h3>Боссы с фазами</h3>
+                <p>Мировые боссы меняют атаки и урон при снижении HP. Нужна стратегия.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🌿</div>
+                <h3>Спойл</h3>
+                <p>Классы Убийца, Плут, Охотник умеют обчищать мобов — шанс получить редкий материал.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🐾</div>
+                <h3>Питомцы в бою</h3>
+                <p>Волк кусает, дракон дышит огнём, сова +крит, феникс возрождает при смерти.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ПРОГРЕССИЯ -->
+<section>
+    <div class="container">
+        <h2>✨ Прогрессия персонажа</h2>
+        <div class="grid">
+            <article class="card">
+                <div class="card-icon">🧝</div>
+                <h3>7 рас, 16 классов</h3>
+                <p>4 обычные расы + 3 премиум. 15 классов + Хранитель. Каждый класс имеет 6+ уникальных скиллов.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">✨</div>
+                <h3>72+ скилла</h3>
+                <p>Классовые + расовые + скрытые из книг. Прокачка до 3 уровня. 3 активных слота.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">👑</div>
+                <h3>8 слотов экипировки</h3>
+                <p>Оружие, шлем, броня, щит, сапоги, серьга, кольцо, аксессуар. 4 грейда: Обычный, D, C, B.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Сетовые бонусы</h3>
+                <p>Собери 3-4 предмета одного сета — получишь дополнительный эффект.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🔨</div>
+                <h3>Улучшение +1..+3</h3>
+                <p>Каждый +20% к цене и бонусам. Нужны материалы и золото.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🏆</div>
+                <h3>30+ достижений</h3>
+                <p>Первая кровь, Легенда (5 боссов), Гроза арены, Исследователь, Богач.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- СОЦИУМ -->
+<section>
+    <div class="container">
+        <h2>👥 Социальные механики</h2>
+        <div class="grid">
+            <article class="card">
+                <div class="card-icon">🏛️</div>
+                <h3>Гильдии</h3>
+                <p>Создай за 1000 золота. До 50 участников. Общая казна, захват локаций.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">💬</div>
+                <h3>Три канала чата</h3>
+                <p>Общий (все игроки), гильдейский (только члены), личный (/w). Антиспам 3 секунды.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🤝</div>
+                <h3>Обмен предметами</h3>
+                <p>Двусторонний trade с подтверждением. Обменивайся вещами и золотом.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🗡️</div>
+                <h3>PvP-дуэли</h3>
+                <p>Ставка от 10 золота. Победитель получает +1 репутацию и ставку. 5 побед — «Гроза арены».</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">📤</div>
+                <h3>Drop и Pickup</h3>
+                <p>Выбрасывай предметы в локации. Другие игроки могут подобрать. Исчезает через 30 минут.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">💰</div>
+                <h3>Передача золота</h3>
+                <p>/pay Ник Сумма — передай золото другому игроку в любой момент.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- КОНТЕНТ -->
+<section>
+    <div class="container">
+        <h2>🎯 Контент</h2>
+        <div class="grid">
+            <article class="card">
+                <div class="card-icon">🏰</div>
+                <h3>3 подземелья</h3>
+                <p>Цепочка комнат (3-7) с боссом в конце. Смерть = потеря всей добычи.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🐉</div>
+                <h3>Мировые боссы</h3>
+                <p>4 раза в день. Общий HP. Все игроки в локации бьют вместе. Награда по вкладу.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">📜</div>
+                <h3>Квесты</h3>
+                <p>Сюжетные, ежедневные (3 в день), еженедельные. Награды за очки заданий.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">⚒️</div>
+                <h3>Крафт</h3>
+                <p>D-грейд (100%), C (75%), B (60%). Рецепты падают с боссов. Разбор и улучшение.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">📖</div>
+                <h3>Книги скиллов</h3>
+                <p>3-5% шанс с боссов. Изучай скрытые скиллы, недоступные классу.</p>
+            </article>
+            <article class="card">
+                <div class="card-icon">🏆</div>
+                <h3>Сезоны</h3>
+                <p>30-дневные соревнования. Топ-10 получают золото, титулы, уникальные предметы.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-bottom">
+    <div class="container">
+        <h2>Готов попробовать?</h2>
+        <a href="https://t.me/ai_admrpg_bot?start=features_bottom"
+           class="btn-primary" rel="noopener">
+            ⚔️ Начать приключение
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <a href="/">Главная</a>
+        <a href="/features/">Возможности</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/premium/">Премиум</a>
+        <a href="/blog/">Блог</a>
+        <p style="margin-top:12px;">© 2026 AI-Приключение. 18+</p>
+    </div>
+</footer>
+
+</body>
+</html>
