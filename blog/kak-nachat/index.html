@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как начать играть в AI-Приключение — пошаговый гайд для новичков</title>
+    <meta name="description" content="Пошаговый гайд: как создать героя в AI-Приключении, выбрать расу и класс, начать первое приключение. Разбор интерфейса, энергии, меню и первых квестов.">
+    <meta name="keywords" content="как начать RPG Telegram, гайд новичка RPG, RPG с нейросетью начало, первая игра RPG бот">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ai-rpg-landing.onrender.com/blog/kak-nachat/">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Как начать играть в AI-Приключение — пошаговый гайд">
+    <meta property="og:description" content="Пошаговый гайд для новичков: создание героя, интерфейс, первые шаги.">
+    <meta property="og:url" content="https://ai-rpg-landing.onrender.com/blog/kak-nachat/">
+    <meta property="og:image" content="https://ai-rpg-landing.onrender.com/preview.jpg">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#7c3aed">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Как начать играть в AI-Приключение",
+      "description": "Пошаговый гайд для новичков",
+      "author": {"@type": "Organization", "name": "AI-Приключение"},
+      "publisher": {"@type": "Organization", "name": "AI-Приключение"},
+      "datePublished": "2026-10-02",
+      "dateModified": "2026-10-02",
+      "mainEntityOfPage": "https://ai-rpg-landing.onrender.com/blog/kak-nachat/"
+    }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0a0416; color: #e8e3f5; line-height: 1.7;
+        }
+        body::before {
+            content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background: radial-gradient(circle at 20% 10%, rgba(139,92,246,0.15), transparent 50%);
+        }
+        .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 20px 0; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-size: 18px; font-weight: 700; color: #e8e3f5;
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+        }
+        .logo span:last-child { color: #8b5cf6; }
+        .header-cta {
+            padding: 8px 16px; background: rgba(139,92,246,0.15);
+            border: 1px solid rgba(139,92,246,0.4); border-radius: 8px;
+            color: #e8e3f5; text-decoration: none; font-size: 14px; font-weight: 600;
+        }
+
+        .breadcrumbs { padding: 12px 0; font-size: 13px; color: #7a6e99; }
+        .breadcrumbs a { color: #8b5cf6; text-decoration: none; }
+
+        article { padding: 30px 0 60px; }
+        article h1 {
+            font-size: clamp(28px, 4.5vw, 40px); font-weight: 800;
+            margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.2;
+        }
+        .meta { color: #7a6e99; font-size: 14px; margin-bottom: 30px; }
+        .meta span { margin-right: 16px; }
+
+        article h2 {
+            font-size: 24px; font-weight: 700;
+            margin: 32px 0 14px; color: #e8e3f5;
+        }
+        article h3 {
+            font-size: 18px; font-weight: 700;
+            margin: 24px 0 10px; color: #b9a3f5;
+        }
+        article p { margin-bottom: 14px; color: #c9bfe0; font-size: 16px; }
+        article ul, article ol { margin: 0 0 16px 24px; color: #c9bfe0; }
+        article li { margin-bottom: 6px; }
+        article code {
+            background: rgba(139,92,246,0.15); color: #b9a3f5;
+            padding: 2px 6px; border-radius: 4px; font-size: 14px;
+        }
+        article a { color: #8b5cf6; text-decoration: none; }
+        article a:hover { text-decoration: underline; }
+        article strong { color: #e8e3f5; }
+
+        .callout {
+            padding: 18px 22px; background: rgba(139,92,246,0.08);
+            border-left: 3px solid #7c3aed; border-radius: 10px;
+            margin: 20px 0;
+        }
+        .callout p { margin: 0; }
+
+        .cta-bottom { padding: 40px 0; text-align: center; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 32px; background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: #fff; text-decoration: none; border-radius: 12px;
+            font-weight: 700; font-size: 16px;
+            box-shadow: 0 8px 24px rgba(124,58,237,0.35);
+        }
+
+        footer {
+            padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center; font-size: 13px; color: #7a6e99;
+        }
+        footer a { color: #8b5cf6; text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="/" class="logo"><span>⚔️</span><span>AI-<span>Приключение</span></span></a>
+        <a href="https://t.me/ai_admrpg_bot?start=guide_header" class="header-cta" rel="noopener">Играть →</a>
+    </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+    <div class="container"><a href="/">Главная</a> · <a href="/blog/">Блог</a> · Как начать</div>
+</nav>
+
+<article>
+    <div class="container">
+
+        <h1>Как начать играть в AI-Приключение</h1>
+        <div class="meta">
+            <span>📖 5 минут чтения</span>
+            <span>🎯 Для новичков</span>
+        </div>
+
+        <p>
+            AI-Приключение — текстовая RPG в Telegram, где нейросеть ведёт сюжет
+            вместо тебя. Ты пишешь, что делает герой, а ИИ-Мастер описывает сцену,
+            запускает бои и следит за сюжетом.
+        </p>
+
+        <h2>1. Открыть бота</h2>
+        <p>
+            Нажми <a href="https://t.me/ai_admrpg_bot?start=guide_start" rel="noopener">эту ссылку</a>
+            и нажми <strong>«Start»</strong> в Telegram. Бот попросит согласие на
+            обработку данных (18+, данные хранятся в РФ). Нажми
+            <strong>«✅ Согласен»</strong>.
+        </p>
+
+        <div class="callout">
+            <p><strong>💡 Совет:</strong> если не хочешь оставлять данные — можешь
+            отозвать согласие в любой момент командой <code>/revoke</code>. Но тогда
+            бот сбросит весь прогресс.</p>
+        </div>
+
+        <h2>2. Создать героя</h2>
+        <p>Дальше 4 шага создания персонажа:</p>
+
+        <h3>Шаг 1: Раса</h3>
+        <p>
+            Выбираешь одну из <strong>4 базовых рас</strong>:
+        </p>
+        <ul>
+            <li><strong>Человек</strong> — универсал, бонус к золоту</li>
+            <li><strong>Эльф</strong> — маг с бонусом к INT и MEN</li>
+            <li><strong>Тёмный эльф</strong> — ловкач с критами</li>
+            <li><strong>Орк</strong> — воин с максимальным HP</li>
+        </ul>
+        <p>
+            Премиум-расы (Демон, Ангел, Плут) открываются за Stars отдельно.
+            Пока у тебя их нет — ты их не увидишь.
+        </p>
+
+        <h3>Шаг 2: Класс</h3>
+        <p>
+            <strong>15 классов</strong> — от Воина до Некроманта. У каждого 6 скиллов
+            и уникальная роль (танк, DPS, хил, поддержка). Список зависит от расы:
+            например, Орк не может быть Магом.
+        </p>
+
+        <h3>Шаг 3: Фракция</h3>
+        <p>3 фракции, каждая даёт свой бонус:</p>
+        <ul>
+            <li><strong>+10% золота</strong> в бою</li>
+            <li><strong>+10% урона</strong> в бою</li>
+            <li><strong>−10% цен</strong> в магазине</li>
+        </ul>
+
+        <h3>Шаг 4: Имя героя</h3>
+        <p>
+            Введи имя (2-20 символов). Оно будет видно другим игрокам в /who,
+            топ-10 и чате. Выбирай осмысленно.
+        </p>
+
+        <h2>3. Начало игры</h2>
+        <p>
+            Ты в Начальной деревне. Внизу экрана — <strong>6 reply-кнопок</strong>:
+        </p>
+        <ul>
+            <li>🎮 <strong>Игра</strong> — инвентарь, магазин, скилы, кузница, квесты</li>
+            <li>👥 <strong>Социум</strong> — кто здесь, гильдия, чат, обмен, дуэли</li>
+            <li>📊 <strong>Прогресс</strong> — профиль, достижения, рейтинг, сезон</li>
+            <li>🌍 <strong>Мир</strong> — события, захваченные локации</li>
+            <li>🐉 <strong>Боссы</strong> — мировые боссы</li>
+            <li>❓ <strong>Помощь</strong> — все команды и подсказки</li>
+        </ul>
+
+        <p>
+            Главное — <strong>пиши текстом</strong>. Например:
+        </p>
+        <ul>
+            <li><code>осматриваюсь</code></li>
+            <li><code>иду в лес</code></li>
+            <li><code>атакую гоблина</code></li>
+            <li><code>говорю с кузнецом</code></li>
+        </ul>
+
+        <div class="callout">
+            <p><strong>🎯 Энергия:</strong> каждое действие тратит 1 энергию.
+            У тебя 20 единиц, восстанавливаются +1 каждые 30 минут. Если
+            энергия кончилась — подожди или зайди в <code>/premium</code>.</p>
+        </div>
+
+        <h2>4. Первые цели</h2>
+        <p>Что сделать в первые 10-15 минут:</p>
+        <ol>
+            <li>Открой <strong>🎮 Игра → 🎒 Инвентарь</strong> — посмотри что есть</li>
+            <li>Загляни в <strong>📋 Квесты</strong> — возьми сюжетный квест</li>
+            <li>Убей 3-5 гоблинов в Тёмном лесу — наберёшь золота и XP</li>
+            <li>Зайди в <strong>🛒 Магазин</strong> — купи зелье HP (25 золота)</li>
+            <li>Получи ежедневную награду через <code>/daily</code> — это +золото и энергия</li>
+        </ol>
+
+        <h2>5. Частые ошибки новичков</h2>
+        <ul>
+            <li><strong>Не лезь на боссов до 10 уровня</strong> — убьют и заберут 30% золота</li>
+            <li><strong>Не пропускай /daily</strong> — 7 дней подряд = 30 золота в день</li>
+            <li><strong>Продавай лишнее</strong> — /sell железный меч (NPC даёт 60% цены)</li>
+            <li><strong>Следи за HP</strong> — если HP &lt; 30%, добавь зелье в бой</li>
+            <li><strong>Смотри /help</strong> — там разбор каждой механики</li>
+        </ul>
+
+        <h2>6. Что дальше</h2>
+        <p>
+            Когда наберёшь <strong>5-10 уровень</strong>, откроются:
+        </p>
+        <ul>
+            <li><strong>Подземелья</strong> — 3 вида, до 7 комнат, босс в конце</li>
+            <li><strong>PvP-дуэли</strong> — вызовы игрокам со ставкой</li>
+            <li><strong>Гильдии</strong> — создай или вступи</li>
+            <li><strong>Спойл</strong> — если ты Убийца, Плут или Охотник</li>
+            <li><strong>Мировые боссы</strong> — 4 раза в день</li>
+        </ul>
+
+        <p>
+            А на <strong>15+ уровне</strong> — экипировка D-грейда, элитные мобы,
+            серьёзные боссы и топ рейтинга.
+        </p>
+
+        <h2>Итог</h2>
+        <p>
+            AI-Приключение — простая в освоении игра, но глубокая в деталях.
+            Первые 5 минут — это создать героя и осмотреться. Первые 30 минут —
+            понять интерфейс. Дальше — твоя история.
+        </p>
+
+        <div class="cta-bottom">
+            <a href="https://t.me/ai_admrpg_bot?start=guide_ready"
+               class="btn-primary" rel="noopener">
+                ⚔️ Создать героя
+            </a>
+        </div>
+
+    </div>
+</article>
+
+<footer>
+    <div class="container">
+        <a href="/">Главная</a>
+        <a href="/features/">Возможности</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/premium/">Премиум</a>
+        <a href="/blog/">Блог</a>
+        <p style="margin-top:12px;">© 2026 AI-Приключение. 18+</p>
+    </div>
+</footer>
+
+</body>
+</html>
