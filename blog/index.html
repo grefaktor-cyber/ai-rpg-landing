@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог AI-Приключения — гайды, обзоры, советы по RPG с нейросетью</title>
+    <meta name="description" content="Блог об AI-Приключении: как начать играть, гайд по классам, расы, механики боя, секреты сезонов. Полезные статьи для новичков и опытных игроков RPG с нейросетью в Telegram.">
+    <meta name="keywords" content="блог RPG, гайд RPG, обзор RPG Telegram, как начать RPG, классы RPG гайд, RPG с нейросетью статьи">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ai-rpg-landing.onrender.com/blog/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Блог AI-Приключение">
+    <meta property="og:description" content="Гайды, обзоры и советы по RPG с нейросетью.">
+    <meta property="og:url" content="https://ai-rpg-landing.onrender.com/blog/">
+    <meta property="og:image" content="https://ai-rpg-landing.onrender.com/preview.jpg">
+    <meta property="og:locale" content="ru_RU">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#7c3aed">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Блог AI-Приключение",
+      "url": "https://ai-rpg-landing.onrender.com/blog/",
+      "description": "Гайды, обзоры и советы по RPG с нейросетью",
+      "inLanguage": "ru"
+    }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0a0416; color: #e8e3f5; line-height: 1.6;
+        }
+        body::before {
+            content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background: radial-gradient(circle at 20% 10%, rgba(139,92,246,0.15), transparent 50%);
+        }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 20px 0; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-size: 18px; font-weight: 700; color: #e8e3f5;
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+        }
+        .logo span:last-child { color: #8b5cf6; }
+        .header-cta {
+            padding: 8px 16px; background: rgba(139,92,246,0.15);
+            border: 1px solid rgba(139,92,246,0.4); border-radius: 8px;
+            color: #e8e3f5; text-decoration: none; font-size: 14px; font-weight: 600;
+        }
+
+        .breadcrumbs { padding: 12px 0; font-size: 13px; color: #7a6e99; }
+        .breadcrumbs a { color: #8b5cf6; text-decoration: none; }
+
+        .page-header { padding: 40px 0 30px; text-align: center; }
+        h1 {
+            font-size: clamp(28px, 5vw, 48px); font-weight: 800;
+            margin-bottom: 16px; letter-spacing: -0.02em;
+        }
+        h1 .accent {
+            background: linear-gradient(135deg, #a78bfa, #7c3aed, #06b6d4);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .page-sub { color: #a89bc5; font-size: 17px; }
+
+        .posts { padding: 40px 0; display: grid;
+                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                 gap: 24px; }
+        .post {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 24px;
+            text-decoration: none; color: inherit;
+            transition: all 0.25s; display: block;
+        }
+        .post:hover {
+            background: rgba(139,92,246,0.08);
+            border-color: rgba(139,92,246,0.35);
+            transform: translateY(-2px);
+        }
+        .post-tag {
+            display: inline-block; padding: 4px 10px;
+            background: rgba(139,92,246,0.15); color: #b9a3f5;
+            border-radius: 100px; font-size: 11px; font-weight: 700;
+            margin-bottom: 12px; letter-spacing: 0.3px;
+        }
+        .post h2 { font-size: 20px; margin-bottom: 10px; letter-spacing: -0.01em; }
+        .post p { font-size: 14px; color: #a89bc5; margin-bottom: 14px; }
+        .post-meta { font-size: 12px; color: #7a6e99; }
+
+        .cta-bottom { padding: 60px 0; text-align: center; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 32px; background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: #fff; text-decoration: none; border-radius: 12px;
+            font-weight: 700; font-size: 16px;
+            box-shadow: 0 8px 24px rgba(124,58,237,0.35);
+            transition: all 0.2s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+
+        footer {
+            padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center; font-size: 13px; color: #7a6e99;
+        }
+        footer a { color: #8b5cf6; text-decoration: none; margin: 0 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="/" class="logo"><span>⚔️</span><span>AI-<span>Приключение</span></span></a>
+        <a href="https://t.me/ai_admrpg_bot?start=blog_header" class="header-cta" rel="noopener">Играть →</a>
+    </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+    <div class="container"><a href="/">Главная</a> · Блог</div>
+</nav>
+
+<main>
+
+<section class="page-header">
+    <div class="container">
+        <h1>Блог <span class="accent">AI-Приключения</span></h1>
+        <p class="page-sub">Гайды, обзоры и советы для игроков</p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="posts">
+
+            <a href="/blog/kak-nachat/" class="post">
+                <span class="post-tag">ГАЙД ДЛЯ НОВИЧКОВ</span>
+                <h2>Как начать играть в AI-Приключение</h2>
+                <p>Пошаговый гайд: как создать героя, выбрать расу и класс, начать первое приключение и не сгореть в первые 10 минут.</p>
+                <div class="post-meta">📖 5 минут чтения</div>
+            </a>
+
+            <a href="/blog/guide-classov/" class="post">
+                <span class="post-tag">ГАЙД ПО КЛАССАМ</span>
+                <h2>Гайд по классам: 15 профессий и как выбрать свою</h2>
+                <p>Разбираем все 15 классов + Хранителя: кому подходит, какие скиллы, как играть в PvE и PvP. Таблица сравнения.</p>
+                <div class="post-meta">📖 10 минут чтения</div>
+            </a>
+
+            <a href="/blog/secret-bossov/" class="post">
+                <span class="post-tag">ГАЙД ПО БОССАМ</span>
+                <h2>Секреты мировых боссов: как получать максимум награды</h2>
+                <p>Как работает распределение наград, зачем бить в топ-1, какие классы выгоднее. Тактика для каждой роли.</p>
+                <div class="post-meta">📖 7 минут чтения</div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<section class="cta-bottom">
+    <div class="container">
+        <a href="https://t.me/ai_admrpg_bot?start=blog_bottom"
+           class="btn-primary" rel="noopener">
+            ⚔️ Начать приключение
+        </a>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <a href="/">Главная</a>
+        <a href="/features/">Возможности</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/premium/">Премиум</a>
+        <a href="/blog/">Блог</a>
+        <p style="margin-top:12px;">© 2026 AI-Приключение. 18+</p>
+    </div>
+</footer>
+
+</body>
+</html>
