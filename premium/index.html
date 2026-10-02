@@ -22,17 +22,6 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://ai-rpg-landing.onrender.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Премиум", "item": "https://ai-rpg-landing.onrender.com/premium/"}
-      ]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
       "@type": "Product",
       "name": "Премиум AI-Приключение",
       "description": "Безлимит энергии, ×2 регенерация, эксклюзивные расы и классы",
@@ -49,9 +38,11 @@
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: #0a0416; color: #e8e3f5; line-height: 1.6;
+            overflow-x: hidden;
         }
         body::before {
             content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -60,29 +51,46 @@
         }
         .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-        header { padding: 20px 0; }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo {
-            font-size: 18px; font-weight: 700; color: #e8e3f5;
-            display: flex; align-items: center; gap: 10px; text-decoration: none;
+        header.site-header {
+            padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(10, 4, 22, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
-        .logo span:last-child { color: #8b5cf6; }
-        .header-cta {
-            padding: 8px 16px; background: rgba(139,92,246,0.15);
-            border: 1px solid rgba(139,92,246,0.4); border-radius: 8px;
-            color: #e8e3f5; text-decoration: none; font-size: 14px; font-weight: 600;
-            transition: all 0.2s;
-        }
-        .header-cta:hover { background: rgba(139,92,246,0.3); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center;
+                        gap: 16px; position: relative; }
+        .logo { font-size: 17px; font-weight: 700; color: #e8e3f5;
+                display: flex; align-items: center; gap: 8px;
+                text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+        .logo-emoji { font-size: 20px; }
+        .logo .accent-name { color: #8b5cf6; }
+        .site-nav { display: flex; gap: 2px; align-items: center;
+                    flex: 1; justify-content: center; }
+        .site-nav a { padding: 8px 14px; border-radius: 8px;
+                      color: #a89bc5; text-decoration: none;
+                      font-size: 14px; font-weight: 500;
+                      transition: all 0.2s; white-space: nowrap; }
+        .site-nav a:hover { color: #e8e3f5; background: rgba(139,92,246,0.1); }
+        .site-nav a.active { color: #e8e3f5; background: rgba(139,92,246,0.15); }
+        .header-cta { padding: 8px 16px; background: rgba(139,92,246,0.15);
+                      border: 1px solid rgba(139,92,246,0.4);
+                      border-radius: 8px; color: #e8e3f5; text-decoration: none;
+                      font-size: 14px; font-weight: 600; transition: all 0.2s;
+                      white-space: nowrap; flex-shrink: 0; }
+        .header-cta:hover { background: rgba(139,92,246,0.3); border-color: #8b5cf6; }
+        .burger { display: none; font-size: 24px; cursor: pointer;
+                  color: #e8e3f5; padding: 4px 8px; user-select: none; line-height: 1; }
+        .nav-toggle { display: none; }
 
-        .breadcrumbs { padding: 12px 0; font-size: 13px; color: #7a6e99; }
-        .breadcrumbs a { color: #8b5cf6; text-decoration: none; }
+        .breadcrumbs { padding: 20px 0 0; font-size: 13px; color: #7a6e99; }
+        .breadcrumbs a { color: #a89bc5; text-decoration: none; }
+        .breadcrumbs a:hover { color: #8b5cf6; }
+        .breadcrumbs .sep { margin: 0 8px; opacity: 0.5; }
 
         .page-header { padding: 50px 0 30px; text-align: center; }
-        h1 {
-            font-size: clamp(28px, 5vw, 48px); font-weight: 800;
-            margin-bottom: 16px; letter-spacing: -0.02em;
-        }
+        h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 800;
+             margin-bottom: 16px; letter-spacing: -0.02em; }
         h1 .accent {
             background: linear-gradient(135deg, #fbbf24, #f59e0b);
             -webkit-background-clip: text; background-clip: text;
@@ -90,17 +98,13 @@
         }
         .page-sub { color: #a89bc5; font-size: 17px; max-width: 700px; margin: 0 auto; }
 
-        section { padding: 40px 0; }
-        h2 {
-            font-size: clamp(22px, 3vw, 32px); font-weight: 800;
-            margin-bottom: 24px; letter-spacing: -0.01em; text-align: center;
-        }
+        section.content-section { padding: 40px 0; }
+        h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 800;
+             margin-bottom: 24px; letter-spacing: -0.01em; text-align: center; }
         h3 { font-size: 18px; margin-bottom: 10px; color: #e8e3f5; }
 
-        .tiers {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px; margin-top: 24px;
-        }
+        .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                 gap: 16px; margin-top: 24px; }
         .tier {
             padding: 24px; background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.06); border-radius: 16px;
@@ -123,35 +127,34 @@
         }
         .tier-icon { font-size: 40px; margin-bottom: 12px; }
         .tier-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-        .tier-price {
-            font-size: 32px; font-weight: 800; color: #fbbf24;
-            margin: 12px 0 6px;
-        }
+        .tier-price { font-size: 32px; font-weight: 800; color: #fbbf24; margin: 12px 0 6px; }
         .tier-price span { font-size: 16px; opacity: 0.8; }
         .tier-desc { font-size: 13px; color: #a89bc5; }
 
-        .grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            padding: 24px; background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06); border-radius: 16px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 20px; }
+        .card { padding: 24px; background: rgba(255,255,255,0.03);
+                border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; }
         .card-icon { font-size: 32px; margin-bottom: 14px; }
         .card p { font-size: 14px; color: #a89bc5; line-height: 1.55; }
         .card ul { margin-top: 10px; padding-left: 20px; }
         .card li { font-size: 14px; color: #a89bc5; margin-bottom: 4px; }
 
         .notice {
-            padding: 20px 24px;
-            background: rgba(139,92,246,0.08);
-            border-left: 3px solid #7c3aed;
-            border-radius: 12px;
-            margin: 24px 0;
-            font-size: 15px;
+            padding: 20px 24px; background: rgba(139,92,246,0.08);
+            border-left: 3px solid #7c3aed; border-radius: 12px;
+            margin: 24px 0; font-size: 15px;
         }
         .notice b { color: #e8e3f5; }
+
+        .mini-faq {
+            padding: 20px 24px; background: rgba(255,255,255,0.03);
+            border-radius: 12px; margin-bottom: 12px;
+            border-left: 3px solid #f59e0b;
+        }
+        .mini-faq h3 { font-size: 16px; margin-bottom: 8px; }
+        .mini-faq p { font-size: 14px; color: #a89bc5; }
+        .mini-faq a { color: #8b5cf6; }
 
         .cta-bottom { padding: 60px 0; text-align: center; }
         .btn-primary {
@@ -164,24 +167,67 @@
         }
         .btn-primary:hover { transform: translateY(-2px); }
 
-        footer {
-            padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05);
-            text-align: center; font-size: 13px; color: #7a6e99;
+        footer.site-footer {
+            padding: 48px 0 32px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 13px; color: #7a6e99;
         }
-        footer a { color: #8b5cf6; text-decoration: none; margin: 0 10px; }
+        .footer-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                       gap: 32px; margin-bottom: 32px; }
+        .footer-col h4 { color: #e8e3f5; font-size: 13px; font-weight: 700;
+                         margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-col a { display: block; color: #a89bc5; text-decoration: none;
+                        padding: 4px 0; transition: color 0.2s; }
+        .footer-col a:hover { color: #8b5cf6; }
+        .footer-bottom { text-align: center; padding-top: 24px;
+                         border-top: 1px solid rgba(255,255,255,0.05);
+                         font-size: 12px; color: #6a5f88; }
+        .footer-bottom a { color: #8b5cf6; text-decoration: none; }
+
+        @media (max-width: 820px) {
+            .site-nav { position: absolute; top: calc(100% + 12px);
+                        left: -24px; right: -24px;
+                        flex-direction: column; align-items: stretch;
+                        padding: 12px 24px;
+                        background: rgba(10, 4, 22, 0.98);
+                        backdrop-filter: blur(12px);
+                        border-bottom: 1px solid rgba(255,255,255,0.06);
+                        display: none; gap: 4px; }
+            .nav-toggle:checked ~ .site-nav { display: flex; }
+            .burger { display: block; order: 3; }
+            .header-cta { display: none; }
+            .site-nav a { padding: 12px 14px; font-size: 15px; }
+        }
     </style>
 </head>
-<body>
+<body data-page="premium">
 
-<header>
+<header class="site-header">
     <div class="container header-inner">
-        <a href="/" class="logo"><span>⚔️</span><span>AI-<span>Приключение</span></span></a>
-        <a href="https://t.me/ai_admrpg_bot?start=premium_header" class="header-cta" rel="noopener">Играть →</a>
+        <a href="/" class="logo" aria-label="AI-Приключение — на главную">
+            <span class="logo-emoji" aria-hidden="true">⚔️</span>
+            <span>AI-<span class="accent-name">Приключение</span></span>
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="burger" aria-label="Открыть меню">☰</label>
+        <nav class="site-nav" aria-label="Основная навигация">
+            <a href="/">Главная</a>
+            <a href="/features/">Возможности</a>
+            <a href="/premium/" class="active">Премиум</a>
+            <a href="/faq/">FAQ</a>
+            <a href="/blog/">Блог</a>
+        </nav>
+        <a href="https://t.me/ai_admrpg_bot?start=premium_header"
+           class="header-cta" rel="noopener">Играть →</a>
     </div>
 </header>
 
 <nav class="breadcrumbs" aria-label="Breadcrumb">
-    <div class="container"><a href="/">Главная</a> · Премиум</div>
+    <div class="container">
+        <a href="/">Главная</a>
+        <span class="sep">›</span>
+        <span>Премиум</span>
+    </div>
 </nav>
 
 <main>
@@ -196,8 +242,7 @@
     </div>
 </section>
 
-<!-- ТАРИФЫ -->
-<section>
+<section class="content-section">
     <div class="container">
         <h2>⚡ Тарифы премиума</h2>
         <div class="tiers">
@@ -239,176 +284,4 @@
             • Безлимит энергии (действия с ИИ без ограничений)<br>
             • ×2 регенерация энергии<br>
             • Скидка 10% в магазине (с месячного тарифа)<br>
-            • Бейдж 💎 рядом с именем<br><br>
-            <b>❌ Чего НЕ даёт премиум:</b><br>
-            • Премиум-расы (Демон, Ангел, Плут) — покупаются <b>отдельно</b> за 300⭐ каждая<br>
-            • Класс Хранитель — покупается <b>отдельно</b><br>
-            • Эксклюзивная экипировка и питомцы — <b>отдельно</b>
-        </div>
-    </div>
-</section>
-
-<!-- РАСЫ -->
-<section>
-    <div class="container">
-        <h2>🎭 Эксклюзивные расы</h2>
-        <div class="grid">
-            <article class="card">
-                <div class="card-icon">😈</div>
-                <h3>Демон — 300⭐</h3>
-                <p>Тёмная раса с бонусами к магии и HP.</p>
-                <ul>
-                    <li>+10% к магическому урону</li>
-                    <li>+15% к максимуму HP</li>
-                    <li>Уникальные классовые комбинации</li>
-                </ul>
-            </article>
-            <article class="card">
-                <div class="card-icon">😇</div>
-                <h3>Ангел — 300⭐</h3>
-                <p>Светлая раса с бонусами к лечению и защите.</p>
-                <ul>
-                    <li>+10% к лечению</li>
-                    <li>+15% к M.Def</li>
-                    <li>Уникальные классов-жрецов</li>
-                </ul>
-            </article>
-            <article class="card">
-                <div class="card-icon">🗡️</div>
-                <h3>Плут — 300⭐</h3>
-                <p>Ловкая раса с бонусами к криту и уклонению.</p>
-                <ul>
-                    <li>+15% к шансу крита</li>
-                    <li>+10% к золоту</li>
-                    <li>Спойл-классы</li>
-                </ul>
-            </article>
-        </div>
-        <div class="notice" style="margin-top:24px;">
-            🎁 <b>Вечный премиум за 5000⭐</b> — открывает все 3 расы сразу и навсегда.
-        </div>
-    </div>
-</section>
-
-<!-- КЛАССЫ -->
-<section>
-    <div class="container">
-        <h2>🛡 Эксклюзивный класс</h2>
-        <div class="grid">
-            <article class="card">
-                <div class="card-icon">🛡</div>
-                <h3>Хранитель — 500⭐</h3>
-                <p>Танк-гибрид с уникальными скиллами защиты и агро.</p>
-                <ul>
-                    <li>+30% к P.Def и M.Def</li>
-                    <li>Уникальные скиллы: «Стена», «Щит Света», «Провокация»</li>
-                    <li>Может носить любой тип брони</li>
-                    <li>Открывается навсегда</li>
-                </ul>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- ЭКИПИРОВКА -->
-<section>
-    <div class="container">
-        <h2>⚔️ Эксклюзивная экипировка</h2>
-        <div class="grid">
-            <article class="card">
-                <div class="card-icon">🗡️</div>
-                <h3>Клинок Судьбы — 500⭐</h3>
-                <p>C-грейд оружие с уникальными бонусами к атаке и криту.</p>
-            </article>
-            <article class="card">
-                <div class="card-icon">🛡</div>
-                <h3>Эгида Богов — 400⭐</h3>
-                <p>C-грейд щит с максимальной P.Def и бонусом HP.</p>
-            </article>
-            <article class="card">
-                <div class="card-icon">👑</div>
-                <h3>Венец Владыки — 350⭐</h3>
-                <p>C-грейд шлем с бонусом INT и MEN.</p>
-            </article>
-            <article class="card">
-                <div class="card-icon">🏹</div>
-                <h3>Лук Апокалипсиса — 450⭐</h3>
-                <p>C-грейд лук для Лучника и Охотника.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- ПИТОМЦЫ -->
-<section>
-    <div class="container">
-        <h2>🐉 Эксклюзивные питомцы</h2>
-        <div class="grid">
-            <article class="card">
-                <div class="card-icon">🦁</div>
-                <h3>Лев — 300⭐</h3>
-                <p>+15% ко всем статам. Универсальный боевой питомец.</p>
-            </article>
-            <article class="card">
-                <div class="card-icon">🦅</div>
-                <h3>Феникс Вечности — 500⭐</h3>
-                <p>Возрождает при смерти (50% HP). 1 раз за бой.</p>
-            </article>
-            <article class="card">
-                <div class="card-icon">🐲</div>
-                <h3>Дракон Хаоса — 700⭐</h3>
-                <p>Дышит огнём каждый 2-й раунд. +20% урона.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ по премиуму -->
-<section>
-    <div class="container">
-        <h2>❓ Частые вопросы про премиум</h2>
-        <div class="faq-item" style="padding:20px 24px;background:rgba(255,255,255,0.03);border-radius:12px;margin-bottom:12px;border-left:3px solid #f59e0b;">
-            <h3>Расы и класс за премиум — навсегда?</h3>
-            <p style="color:#a89bc5;">Да. Купил расу или класс — они у тебя остаются, даже если премиум закончится.</p>
-        </div>
-        <div class="faq-item" style="padding:20px 24px;background:rgba(255,255,255,0.03);border-radius:12px;margin-bottom:12px;border-left:3px solid #f59e0b;">
-            <h3>Что будет, если премиум закончится?</h3>
-            <p style="color:#a89bc5;">Останешься со всем, что купил навсегда (расы, класс, предметы, питомцы). Просто пропадут бонусы: безлимит энергии, ×2 регенерация.</p>
-        </div>
-        <div class="faq-item" style="padding:20px 24px;background:rgba(255,255,255,0.03);border-radius:12px;margin-bottom:12px;border-left:3px solid #f59e0b;">
-            <h3>Как купить за Telegram Stars?</h3>
-            <p style="color:#a89bc5;">Напиши боту <a href="https://t.me/ai_admrpg_bot?start=premium_faq" rel="noopener" style="color:#8b5cf6;">/premium</a> → выбери раздел → нажми «Купить». Откроется оплата Telegram Stars прямо в боте.</p>
-        </div>
-        <div class="faq-item" style="padding:20px 24px;background:rgba(255,255,255,0.03);border-radius:12px;margin-bottom:12px;border-left:3px solid #f59e0b;">
-            <h3>Можно ли вернуть Stars?</h3>
-            <p style="color:#a89bc5;">По правилам Telegram — нет. Покупай обдуманно.</p>
-        </div>
-    </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-bottom">
-    <div class="container">
-        <h2>Готов получить премиум?</h2>
-        <a href="https://t.me/ai_admrpg_bot?start=premium_bottom"
-           class="btn-primary" rel="noopener">
-            💎 Открыть магазин в боте
-        </a>
-    </div>
-</section>
-
-</main>
-
-<footer>
-    <div class="container">
-        <a href="/">Главная</a>
-        <a href="/features/">Возможности</a>
-        <a href="/faq/">FAQ</a>
-        <a href="/premium/">Премиум</a>
-        <a href="/blog/">Блог</a>
-        <p style="margin-top:12px;">© 2026 AI-Приключение. 18+</p>
-    </div>
-</footer>
-
-</body>
-</html>
+            • Бейдж 💎 рядом с
